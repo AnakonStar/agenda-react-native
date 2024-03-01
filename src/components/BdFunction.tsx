@@ -3,7 +3,7 @@ import { Contacts } from "@/api/models/contacts";
 
 const fetchContatos = async (setData: any) => {
     try {
-        const response = await axios.get<Contacts[]>('http://192.168.3.5:5000/api/contatos')
+        const response = await axios.get<Contacts[]>('http://localhost:5000/api/contatos')
 
         setData(response.data)
     } catch (error) {
@@ -19,7 +19,7 @@ type dbContact = {
 
 const addContato = async (nome: string, email: string, telefone: string) => {
     try {
-        const response = await axios.post<dbContact>('http://192.168.3.5:5000/api/contatos', {
+        const response = await axios.post<dbContact>('http://localhost:5000/api/contatos', {
             email,
             nome,
             telefone
@@ -33,7 +33,7 @@ const addContato = async (nome: string, email: string, telefone: string) => {
 
 const editContato = async (nome: string, email: string, telefone: string, id: string) => {
     try {
-        const response = await axios.put<dbContact[]>(`http://192.168.3.5:5000/api/${id}`, {
+        const response = await axios.put<dbContact[]>(`http://localhost:5000/api/${id}`, {
             email,
             nome,
             telefone
@@ -47,7 +47,7 @@ const editContato = async (nome: string, email: string, telefone: string, id: st
 
 const deleteContato = async (id: string) => {
     try {
-        const response = await axios.delete<dbContact[]>(`http://192.168.3.5:5000/api/${id}`)
+        const response = await axios.delete<dbContact[]>(`http://localhost:5000/api/${id}`)
 
         console.log(response.data)
     } catch (error) {
