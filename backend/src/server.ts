@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { addData, deleteData, editData, getData } from "./src/api/controllers";
+import { addData, deleteData, editData, getData } from "./api/controllers";
 
 const app = express();
 const PORT = 5000;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Contacts } from "@/api/models/contacts";
+import { Contacts } from "models/contacts";
 
 const fetchContatos = async (setData: any) => {
     try {

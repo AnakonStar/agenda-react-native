@@ -9,7 +9,7 @@ import { elColor } from '@/styles/variables';
 import { ButtonStylized } from '@/components/_router';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { StackTypes } from '@/routes';
-import { Contacts } from "@/api/models/contacts";
+import { Contacts } from "models/contacts";
 import { fetchContatos } from '@/components/BdFunction';
 
 export default function Home() {
@@ -47,7 +47,7 @@ export default function Home() {
                         <Text style={styles.warningTxt}>
                             Não há contatos para mostrar, tente adicionar um!
                         </Text>
-                        <ButtonStylized plcHolder='Adicionar contato' onPress={() => navigation.navigate('AddContact')} icon='arrow-back' />
+                        <ButtonStylized plcHolder='Adicionar contato' onPress={() => navigation.navigate('AddContact')} />
                     </View>
             }
 
