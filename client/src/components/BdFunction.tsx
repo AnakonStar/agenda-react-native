@@ -1,5 +1,7 @@
 import axios from "axios";
-import { Contacts } from "@/api/models/contacts";
+import { Contacts } from "models/contacts";
+
+//Criar um arquivo com o ip - arquivo de configuração
 
 const fetchContatos = async (setData: any) => {
     try {

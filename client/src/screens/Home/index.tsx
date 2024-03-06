@@ -1,25 +1,33 @@
 import * as React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, RefreshControl } from 'react-native';
 
 import global from '@/styles/global';
 import styles from './styles';
 import { ContactItem, IconButton } from '@/components/_router';
 import { Feather } from '@expo/vector-icons';
-import { elColor } from '@/styles/variables';
+import { elColor, primaryColor } from '@/styles/variables';
 import { ButtonStylized } from '@/components/_router';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { StackTypes } from '@/routes';
-import { Contacts } from "@/api/models/contacts";
+import { Contacts } from "models/contacts";
 import { fetchContatos } from '@/components/BdFunction';
 
 export default function Home() {
     const navigation = useNavigation<StackTypes>();
     const isFocused = useIsFocused();
     const [contacts, setContacts] = React.useState<Contacts[]>([])
+    const [refreshing, setRefreshing] = React.useState<boolean>(false);
+
+    function onRefresh() {
+        setRefreshing(true);
+        fetchContatos(setContacts).then(() => {
+            setRefreshing(false);
+        });
+    };
 
     React.useEffect(() => {
-        fetchContatos(setContacts)
-    }, [isFocused])
+        onRefresh()
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -36,6 +44,12 @@ export default function Home() {
                         <IconButton icon='add' onPress={() => navigation.navigate('AddContact')} />
                         <FlatList
                             data={contacts}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={refreshing}
+                                    onRefresh={onRefresh}
+                                />
+                            }
                             keyExtractor={(item) => item.id.toString()}
                             renderItem={({ item }) => (
                                 <ContactItem id={item.id.toString()} nome={item.nome} email={item.email} telefone={item.telefone} />
@@ -47,7 +61,7 @@ export default function Home() {
                         <Text style={styles.warningTxt}>
                             Não há contatos para mostrar, tente adicionar um!
                         </Text>
-                        <ButtonStylized plcHolder='Adicionar contato' onPress={() => navigation.navigate('AddContact')} icon='arrow-back' />
+                        <ButtonStylized plcHolder='Adicionar contato' onPress={() => navigation.navigate('AddContact')} />
                     </View>
             }
 
@@ -55,6 +69,8 @@ export default function Home() {
 
     )
 }
+
+//Código do Undo
 
 // type userType = {
 //     name: string,

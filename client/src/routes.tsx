@@ -1,5 +1,5 @@
 import { createNativeStackNavigator, NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Contacts, UseContact } from "./api/models/contacts";
+import { Contacts, UseContact } from "models/contacts";
 import { Home, AddContact, ContactOpen } from "./screens/_router";
 import { RouteProp } from "@react-navigation/native";
 
