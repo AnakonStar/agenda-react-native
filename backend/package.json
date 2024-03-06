@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.ts",
-  "scripts": {},
+  "scripts": {
+    "dev:server": "tsx watch src/server.ts",
+    "ts:check": "tsc"
+  },
   "type": "module",
   "dependencies": {
     "cors": "^2.8.5",

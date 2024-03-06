@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Contacts } from "models/contacts";
 
+//Criar um arquivo com o ip - arquivo de configuração
+
 const fetchContatos = async (setData: any) => {
     try {
         const response = await axios.get<Contacts[]>('http://192.168.3.5:5000/api/contatos')
